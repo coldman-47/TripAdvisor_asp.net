@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="trip_advisoryModelStoreContainer" CdmEntityContainer="trip_advisoryEntities">
+    <EntitySetMapping Name="biens">
+      <EntityTypeMapping TypeName="trip_advisoryModel.biens">
+        <MappingFragment StoreEntitySet="biens">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type_bien_id" ColumnName="type_bien_id" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="prix_unitaire" ColumnName="prix_unitaire" />
+          <ScalarProperty Name="nbr_places_dispo" ColumnName="nbr_places_dispo" />
+          <ScalarProperty Name="nbr_places_total" ColumnName="nbr_places_total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="types_biens">
+      <EntityTypeMapping TypeName="trip_advisoryModel.types_biens">
+        <MappingFragment StoreEntitySet="types_biens">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

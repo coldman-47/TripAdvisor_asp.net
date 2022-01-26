@@ -1,0 +1,90 @@
+﻿@model PagedList.IPagedList<TripAdvisory_.Models.BienViewModel>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div>
+    @using (Html.BeginForm("Index", "BienViewModels", FormMethod.Get))
+    {
+        <p>
+            Code Bien: @Html.TextBox("CodeBien", ViewBag.CodeBien
+as string, new { @class = "form-control" })
+
+        </p>
+
+        <p>
+            Libelle Bien: @Html.TextBox("LibelleBien", ViewBag.LibelleBien
+as string, new { @class = "form-control" })
+            
+        </p>
+
+        <p>
+            <input type="submit" value="Rechercher" class=" btn btn-info" />
+        </p>
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().prix_unitaire) (XOF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().nbr_places_dispo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().nbr_places_total)
+        </th>
+        <th class="text-center">Modifier</th>
+        <th class="text-center">Détails</th>
+        <th class="text-center">Supprimer</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.code)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.libelle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.prix_unitaire)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nbr_places_dispo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nbr_places_total)
+    </td>
+    <td class="text-center">
+        <a href="BienViewModels/edit/@Html.DisplayFor(modelItem => item.id)"><button class="btn btn-sm btn-outline-secondary btn-circle"><i class="fas fa-fw fa-pen"></i></button></a>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.id })*@
+    </td>
+    <td class="text-center">
+        <a href="BienViewModels/details/@Html.DisplayFor(modelItem => item.id)"><button class="btn btn-sm btn-circle btn-info"><i class="fas fa-fw fa-book"></i></button></a>
+        @* @Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+    </td>
+    <td class="text-center">
+        <a href="BienViewModels/delete/@Html.DisplayFor(modelItem => item.id)"><button class="btn btn-sm btn-circle btn-danger"><i class="fas fa-fw fa-trash"></i></button></a>
+        @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+    </td>
+</tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount <Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, CodeBien = ViewBag.CodeBien, LibelleBien = ViewBag.LibelleBien }))

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="trip_advisoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bien">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type_bien_id" Type="Int32" Nullable="false" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prix_unitaire" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nbr_places_dispo" Type="Int32" />
+    <Property Name="nbr_places_total" Type="Int32" />
+    <NavigationProperty Name="TypeBien" Relationship="Self.FK_Bien_TypeBien" FromRole="Bien" ToRole="TypeBien" />
+  </EntityType>
+  <EntityType Name="TypeBien">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Biens" Relationship="Self.FK_Bien_TypeBien" FromRole="TypeBien" ToRole="Bien" />
+  </EntityType>
+  <Association Name="FK_Bien_TypeBien">
+    <End Role="TypeBien" Type="Self.TypeBien" Multiplicity="1" />
+    <End Role="Bien" Type="Self.Bien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeBien">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bien">
+        <PropertyRef Name="type_bien_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TripAdvisorEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Biens" EntityType="Self.Bien" />
+    <EntitySet Name="TypeBiens" EntityType="Self.TypeBien" />
+    <AssociationSet Name="FK_Bien_TypeBien" Association="Self.FK_Bien_TypeBien">
+      <End Role="TypeBien" EntitySet="TypeBiens" />
+      <End Role="Bien" EntitySet="Biens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

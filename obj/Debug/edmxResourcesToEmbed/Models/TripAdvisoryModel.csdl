@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="trip_advisoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="biens">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="type_bien_id" Type="Int32" Nullable="false" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prix_unitaire" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nbr_places_dispo" Type="Int32" />
+    <Property Name="nbr_places_total" Type="Int32" />
+  </EntityType>
+  <EntityType Name="types_biens">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="code" Type="Int32" Nullable="false" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="trip_advisoryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="biens" EntityType="Self.biens" />
+    <EntitySet Name="types_biens" EntityType="Self.types_biens" />
+  </EntityContainer>
+</Schema>
