@@ -191,6 +191,9 @@
     <Compile Include="Models\BienViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>TripAdvisorModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TripAdvisorModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -207,6 +210,9 @@
       <DependentUpon>TripAdvisorModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TypeBien.cs">
+      <DependentUpon>TripAdvisorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Utilisateur.cs">
       <DependentUpon>TripAdvisorModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

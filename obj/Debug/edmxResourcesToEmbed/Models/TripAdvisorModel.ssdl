@@ -12,6 +12,13 @@
     <Property Name="nbr_places_dispo" Type="int" />
     <Property Name="nbr_places_total" Type="int" />
   </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="libelle" Type="nvarchar" MaxLength="15" />
+  </EntityType>
   <EntityType Name="TypeBien">
     <Key>
       <PropertyRef Name="id" />
@@ -19,6 +26,16 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="libelle" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="nvarchar" MaxLength="160" />
+    <Property Name="adresse" Type="nvarchar" MaxLength="200" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="15" />
+    <Property Name="id_asp_user" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <Association Name="FK_Bien_TypeBien">
     <End Role="TypeBien" Type="Self.TypeBien" Multiplicity="1" />
@@ -34,7 +51,9 @@
   </Association>
   <EntityContainer Name="trip_advisoryModelStoreContainer">
     <EntitySet Name="Bien" EntityType="Self.Bien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TypeBien" EntityType="Self.TypeBien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Bien_TypeBien" Association="Self.FK_Bien_TypeBien">
       <End Role="TypeBien" EntitySet="TypeBien" />
       <End Role="Bien" EntitySet="Bien" />

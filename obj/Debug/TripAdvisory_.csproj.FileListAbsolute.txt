@@ -126,3 +126,4 @@ C:\Users\ramot\Documents\Cours\asp.net\TripAdvisory_\bin\PagedList.dll
 C:\Users\ramot\Documents\Cours\asp.net\TripAdvisory_\bin\PagedList.xml
 C:\Users\ramot\Documents\Cours\asp.net\TripAdvisory_\bin\PagedList.Mvc.dll
 C:\Users\ramot\Documents\Cours\asp.net\TripAdvisory_\bin\PagedList.Mvc.xml
+C:\Users\ramot\Documents\Cours\asp.net\TripAdvisory_\obj\Debug\TripAdvisory_.csproj.AssemblyReference.cache

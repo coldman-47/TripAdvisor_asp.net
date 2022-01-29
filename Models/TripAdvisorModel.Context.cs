@@ -27,5 +27,7 @@ namespace TripAdvisory_.Models
     
         public virtual DbSet<Bien> Biens { get; set; }
         public virtual DbSet<TypeBien> TypeBiens { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Utilisateur> Utilisateurs { get; set; }
     }
 }

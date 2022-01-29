@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="trip_advisoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="trip_advisoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bien">
           <Key>
             <PropertyRef Name="id" />
@@ -17,6 +17,13 @@
           <Property Name="nbr_places_dispo" Type="int" />
           <Property Name="nbr_places_total" Type="int" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="nvarchar" MaxLength="15" />
+        </EntityType>
         <EntityType Name="TypeBien">
           <Key>
             <PropertyRef Name="id" />
@@ -24,6 +31,16 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="libelle" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="nvarchar" MaxLength="160" />
+          <Property Name="adresse" Type="nvarchar" MaxLength="200" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="15" />
+          <Property Name="id_asp_user" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <Association Name="FK_Bien_TypeBien">
           <End Role="TypeBien" Type="Self.TypeBien" Multiplicity="1" />
@@ -39,14 +56,15 @@
         </Association>
         <EntityContainer Name="trip_advisoryModelStoreContainer">
           <EntitySet Name="Bien" EntityType="Self.Bien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeBien" EntityType="Self.TypeBien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Bien_TypeBien" Association="Self.FK_Bien_TypeBien">
             <End Role="TypeBien" EntitySet="TypeBien" />
             <End Role="Bien" EntitySet="Bien" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="trip_advisoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -91,7 +109,26 @@
             <End Role="TypeBien" EntitySet="TypeBiens" />
             <End Role="Bien" EntitySet="Biens" />
           </AssociationSet>
+          <EntitySet Name="Roles" EntityType="trip_advisoryModel.Role" />
+          <EntitySet Name="Utilisateurs" EntityType="trip_advisoryModel.Utilisateur" />
         </EntityContainer>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="adresse" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="id_asp_user" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -117,6 +154,25 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="libelle" ColumnName="libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="trip_advisoryModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateurs">
+            <EntityTypeMapping TypeName="trip_advisoryModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="id_asp_user" ColumnName="id_asp_user" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

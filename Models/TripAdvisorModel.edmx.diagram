@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="trip_advisoryModel.Bien" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="trip_advisoryModel.TypeBien" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="trip_advisoryModel.FK_Bien_TypeBien" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="trip_advisoryModel.Role" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="trip_advisoryModel.Utilisateur" Width="1.5" PointX="2.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

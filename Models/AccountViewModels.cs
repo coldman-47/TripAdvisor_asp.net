@@ -50,7 +50,7 @@ namespace TripAdvisory_.Models
     {
         [Required]
         [Display(Name = "Courrier électronique")]
-        [EmailAddress]
+        /*[EmailAddress]*/
         public string Email { get; set; }
 
         [Required]

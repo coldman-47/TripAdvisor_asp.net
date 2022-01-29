@@ -41,5 +41,24 @@
       <End Role="TypeBien" EntitySet="TypeBiens" />
       <End Role="Bien" EntitySet="Biens" />
     </AssociationSet>
+    <EntitySet Name="Roles" EntityType="trip_advisoryModel.Role" />
+    <EntitySet Name="Utilisateurs" EntityType="trip_advisoryModel.Utilisateur" />
   </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="libelle" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+    <Property Name="adresse" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="id_asp_user" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>
